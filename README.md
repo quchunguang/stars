@@ -1,5 +1,5 @@
 # stars
-▁▂▃▅▂▇ in your shell and more than that. Inspired by holman/spark.
+++++------ your data in your shell, and more. Inspired by holman/spark.
 
 ## Install
 
@@ -10,13 +10,16 @@ go get github.com/quchunguang/stars
 ## Run
 
 ```sh
-stars 0 30 55 80 33 150
+stars 1.2 4.4 3.1 0.5
+echo 1.2 4.4 3.1 0.5 | stars
+stars --spark 1.2 4.4 3.1 0.5
 ```
 
 ## Cooler Usage
 
 ```sh
-stars --spark 0 30 55 80 33 150
+stars -H --spark "Average scores" 1.2 4.4 3.1 0.5
+stars -H --spark "Changed lines in stars.go" 10 5
 ```
 
 ## Contributing
