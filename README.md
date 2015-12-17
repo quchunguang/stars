@@ -1,5 +1,5 @@
 # stars
-++++------ your data in your shell, and more. Inspired by holman/spark.
+++++------ your data in shell, and more. Inspired by holman/spark.
 
 ## Install
 
@@ -10,8 +10,8 @@ go get github.com/quchunguang/stars
 ## Run
 
 ```sh
-stars 1.2 4.4 3.1 0.5
-echo 1.2 4.4 3.1 0.5 | stars
+stars 10 5
+echo 10 5 | stars
 stars --spark 1.2 4.4 3.1 0.5
 ```
 

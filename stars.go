@@ -19,6 +19,7 @@ var Conf struct {
 	Columns   string   // -C
 	IsReverse bool     // -R
 	CharList  string   // -L
+	Header    string
 }
 
 func ParseConf() {
@@ -77,12 +78,15 @@ Data Format:
 	}
 	Conf.IsReverse = arguments["-R"].(bool)
 	Conf.CharList = arguments["-L"].(string)
-
-	fmt.Println(Conf)
 }
 
 func ProcessLine(data_list []string) {
 	var data []float64
+	if Conf.IsHeader {
+		Conf.Header = data_list[0]
+		// data_list = append(data_list[:0], data_list[1:]...)
+		data_list = data_list[1:]
+	}
 	for _, s := range data_list {
 		d, _ := strconv.ParseFloat(s, 64)
 		data = append(data, d)
@@ -102,7 +106,8 @@ func MinMaxSum(data []float64) (min, max, sum float64) {
 		sum += f
 		if f < min {
 			min = f
-		} else if f > max {
+		}
+		if f > max {
 			max = f
 		}
 	}
@@ -120,20 +125,28 @@ func Star(data []float64) {
 			star = append(star, Conf.CharList[i%len(Conf.CharList)])
 		}
 	}
-	fmt.Println(string(star))
+	if Conf.IsHeader {
+		fmt.Println(string(star), Conf.Header)
+	} else {
+		fmt.Println(string(star))
+	}
 }
 
 func Spark(data []float64) {
 	smbs := []rune("▁▂▃▄▅▆▇█")
 	min, max, _ := MinMaxSum(data)
+
 	step := (max - min) / float64(len(smbs)-1)
 	var spark []rune
 	for _, f := range data {
 		index := int((f - min) / step)
-		fmt.Print(index)
 		spark = append(spark, smbs[index])
 	}
-	fmt.Println(string(spark))
+	if Conf.IsHeader {
+		fmt.Println(string(spark), Conf.Header)
+	} else {
+		fmt.Println(string(spark))
+	}
 }
 
 func main() {
