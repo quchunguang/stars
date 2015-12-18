@@ -10,16 +10,16 @@ go get github.com/quchunguang/stars
 ## Run
 
 ```sh
-stars 10 5
+stars data_file
 echo 10 5 | stars
-stars --spark 1.2 4.4 3.1 0.5
+echo  1.2 4.4 3.1 0.5 | stars --spark
 ```
 
 ## Cooler Usage
 
 ```sh
-stars -H --spark "Average scores" 1.2 4.4 3.1 0.5
-stars -H --spark "Changed lines in stars.go" 10 5
+echo "Average scores" 1.2 4.4 3.1 0.5 | stars --spark
+echo "Changed lines in stars.go" 10 5 | stars
 ```
 
 ## Contributing
